@@ -8,13 +8,13 @@
 */
 
 $(document).ready(function() {
+
     // hide everything but name form to start
-    $("#nameOutput").hide();
-    $("#choose").hide();
-    $("#images").hide();
-    $("#results").hide();
-    $("#playAgain").hide();
-    $("#newName").hide();
+    hideAll();
+    $("#nameForm").show();
+    $("#banner").show();
+
+
 
     // play or chose no name change
     $( "#play, #no" ).on( "click", function( event ) {
@@ -23,8 +23,7 @@ $(document).ready(function() {
         var name = getName();
 
         // hide name form, show choice screen
-        $("#nameForm").hide();
-        $("#newName").hide();
+        hideAll();
         $("#nameOutput").text(name);
         $("#nameOutput").show();
         $("#choose").show();
@@ -34,9 +33,7 @@ $(document).ready(function() {
     //chose image
     $( "a" ).on( "click", function( event ) {
         event.preventDefault();
-        $("#nameOutput").hide();
-        $("#choose").hide();
-        $("#images").hide();
+        hideAll();
         $("#results").show();
 
         var choice = $(this).attr("id");
@@ -67,33 +64,37 @@ $(document).ready(function() {
 
         }while(computerChoice == choice);
 
-
     });
 
     // Reset game
     $( "#again" ).on( "click", function( event ) {
         console.log("again");
+        hideAll();
         $("#newName").show();
-        $("#nameOutput").hide();
-        $("#choose").hide();
-        $("#images").hide();
-        $("#results").hide();
-        $("#playAgain").hide();
     });
 
     // chose name change
     $( "#yes" ).on( "click", function( event ) {
         console.log("new name");
+        hideAll();
         $("#nameForm").show();
-        $("#nameOutput").hide();
-        $("#choose").hide();
-        $("#images").hide();
-        $("#results").hide();
-        $("#playAgain").hide();
-        $("#newName").hide();
+        $("#banner").show();
     });
 
 });
+
+// hide all divs
+function hideAll() {
+    $("#nameOutput").hide();
+    $("#choose").hide();
+    $("#images").hide();
+    $("#results").hide();
+    $("#playAgain").hide();
+    $("#newName").hide();
+    $("#banner").hide();
+    $("#nameForm").hide();
+};
+
 
 // set name
 function getName() {

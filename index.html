@@ -36,7 +36,7 @@
     <div class="row">
       <div class="u-full-width" style="margin-top: 5%">
         <p>
-        <img src="images/banner.png" alt="Rock Paper Scissors" />
+        <img id="banner" src="images/banner.png" alt="Rock Paper Scissors" />
         </p>
       </div>
     </div>
@@ -51,8 +51,8 @@
               <button class="button-primary" type="button" onclick="reset()" >Reset</button>
           </form>
 
-            <h3><span id="nameOutput"></span></h3>
-            <p id="choose">Choose your weapon!</p>
+            <h3 id="weapon"><span id="nameOutput"></span><span id="choose">, choose your weapon!</span></h3>
+
 
         </div>
     </div>
@@ -61,11 +61,11 @@
       <div class="row">
         <div class="u-full-width" style="margin-top: 2%">
 
-          <a href="#" id="Rock"><img src="images/rock.png" alt="rock" /></a>
+          <a href="#" id="Rock"><img src="images/rock.png" class="img" alt="rock" /></a>
 
-          <a href="#" id="Paper"><img src="images/paper.png" alt="paper" /></a>
+          <a href="#" id="Paper"><img src="images/paper.png" class="img" alt="paper" /></a>
 
-          <a href="#" id="Scissors"><img src="images/scissors.png" alt="scissor" /></a>
+          <a href="#" id="Scissors"><img src="images/scissors.png" class="img" alt="scissor" /></a>
 
         </div>
       </div>
@@ -87,12 +87,12 @@
 
       <div class="row">
         <div class="six columns" style="margin-top: 2%">
-          <h3>You chose:</h3>
+          <h3>You:</h3>
           <p id="img"></p>
           <h3><span id="choice"></span></h3>
         </div>
         <div class="six columns" style="margin-top: 2%">
-          <h3>Computer chose:</h3>
+          <h3>Computer:</h3>
           <p id="imgComp"></p>
           <h3><span id="choiceComp"></span></h3>
         </div>
@@ -112,6 +112,11 @@
     </div>
 
   </div>
+
+
+    <div class="bottom" style="margin-top: 1%">
+      <p>Rock, Paper, Scissors - &copy;DK Devs 2015</p>
+    </div>
 
 
 <!-- Scripts

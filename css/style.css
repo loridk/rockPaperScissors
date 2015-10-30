@@ -15,3 +15,30 @@ img {
 .loser {
 	color: red;
 }
+
+.bottom {
+	background-color: #000000;
+	color: #FFFFFF;
+	font-size: .75em;
+	text-align: center;
+	position: fixed;
+	bottom:0px;
+	width: 100%;
+	padding-top: 1%;
+}
+
+.container {
+	padding-bottom: 7%;
+}
+
+
+@media only screen and (max-width:800px) {
+	.img {
+		width: 150px;
+	}
+
+	#weapon {
+		font-size: 1em;
+		font-weight: bold;
+	}
+}
