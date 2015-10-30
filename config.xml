@@ -3,7 +3,7 @@
         id        = "com.dkdevs.rock-paper-scissors"
         version   = "1.3.0">
 
-    <name>International Convert</name>
+    <name>Rock, Paper, Scissors</name>
 
     <description>
         DK Devs - Rock, Paper, Scissors

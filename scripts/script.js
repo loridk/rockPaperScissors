@@ -1,6 +1,6 @@
 /**
  * Created by Lori DK on 10/27/2015.
- * Version 1.2
+ * Version 1.3
  */
 
 /* TO DO
