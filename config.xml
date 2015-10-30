@@ -14,6 +14,7 @@
     </author>
 
     <preference name="permissions" value="none"/>
+    <preference name="orientation" value="landscape" />
 
 
     <icon src="res/android/drawable-ldpi/ic_launcher.png" gap:platform="android" gap:qualifier="ldpi" />
