@@ -4,10 +4,13 @@
  */
 
 /* TO DO
--keep score
+-ask name less
+-reset score
 */
 
 $(document).ready(function() {
+
+    //var game = 0;
 
     // hide everything but name form to start
     hideAll();
@@ -54,23 +57,107 @@ $(document).ready(function() {
             $("#choiceComp").text(computerChoice);
 
             // find winner
-            var message = compare(choice, computerChoice, name);
-
-            // output winner
-            $("#message").html(message);
-
-            // ask to play again
-            $("#playAgain").show();
-
+            var getWin = compare(choice, computerChoice);
         }while(computerChoice == choice);
+
+        if (window.localStorage) {
+            console.log('Local Storage is available');
+            $("#score").show();
+
+            if (!localStorage.scoreTotal && !localStorage.scoreTotalComp) {
+                localStorage.scoreTotal = 0;
+                localStorage.scoreTotalComp = 0;
+            }
+
+            if (getWin == 1 || getWin == 3 || getWin == 6) {
+                var outcome = "<span class='winner'>" +name+ " wins!</span></b>";
+                localStorage.scoreTotal++;
+                if (getWin == 1){
+                    var message = "<b>Rock beats scissors!</b> " + outcome;
+                }
+                else if(getWin == 3) {
+                    var message = "<b>Paper beats rock!</b> " + outcome;
+                }
+                else {
+                    var message = "<b>Scissors beats paper!</b> " + outcome;
+                }
+            }
+            else {
+                var outcome = "<span class='loser'>" +name+ " loses!</span></b>";
+                localStorage.scoreTotalComp++;
+                if (getWin == 2){
+                    var message = "<b>Paper beats rock!</b> " + outcome;
+                }
+                else if(getWin == 4) {
+                    var message = "<b>Scissors beat paper!</b> " + outcome;
+                }
+                else {
+                    var message = "<b><b>Rock beats scissors!</b> " + outcome;
+                }
+            }
+            $("#scoreTotal").html("<b>You: " + localStorage.scoreTotal +"</b>");
+            $("#scoreTotalComp").html("<b>Computer: " + localStorage.scoreTotalComp + "</b>");
+        }
+
+        else {
+
+            if (getWin == 1 || getWin == 3 || getWin == 6) {
+                var outcome = "<span class='winner'>" +name+ " wins!</span></b>";
+                if (getWin == 1){
+                    var message = "<b>Rock beats scissors!</b> " + outcome;
+                }
+                else if(getWin == 3) {
+                    var message = "<b>Paper beats rock!</b> " + outcome;
+                }
+                else {
+                    var message = "<b>Scissors beats paper!</b> " + outcome;
+                }
+            }
+            else {
+                var outcome = "<span class='loser'>" +name+ " loses!</span></b>";
+                if (getWin == 2){
+                    var message = "<b>Paper beats rock!</b> " + outcome;
+                }
+                else if(getWin == 4) {
+                    var message = "<b>Scissors beat paper!</b> " + outcome;
+                }
+                else {
+                    var message = "<b><b>Rock beats scissors!</b> " + outcome;
+                }
+            }
+        }
+
+        // output winner
+        $("#message").html(message);
+
+        // ask to play again
+        $("#playAgain").show();
 
     });
 
     // Reset game
     $( "#again" ).on( "click", function( event ) {
+        //game++;
+        //console.log(game);
         console.log("again");
         hideAll();
         $("#newName").show();
+        /*
+        if (game / 3 === 0){
+            $("#newName").show();
+        }
+
+        //else {
+            var name = getName();
+
+            // hide name form, show choice screen
+            hideAll();
+            $("#nameOutput").text(name);
+            $("#nameOutput").show();
+            $("#choose").show();
+            $("#images").show();
+        //}
+         */
     });
 
     // chose name change
@@ -93,6 +180,7 @@ function hideAll() {
     $("#newName").hide();
     $("#banner").hide();
     $("#nameForm").hide();
+    $("#score").hide();
 };
 
 
@@ -137,36 +225,71 @@ function chooseImg(pick){
     }
 }
 
-// find winner
-function compare(choice1, choice2, name) {
+function compare(choice1, choice2) {
 
     if (choice1 === "Rock") {
         if (choice2 === "Scissors") {
-            return "<b>Rock beats scissors! <span class='winner'>" +name+ " wins!</span></b>";
+            return 1;
         }
 
         else {
-            return "<b>Paper beats rock! <span class='loser'>" +name+ " loses!</span></b>";
+            return 2;
         }
     }
 
     else if (choice1 === "Paper") {
         if (choice2 === "Rock") {
-            return "<b>Paper beats rock! <span class='winner'>" +name+ " wins!</span></b>";
+            return 3;
         }
 
         else {
-            return "<b>Scissors beat paper! <span class='loser'>" +name+ " loses!</span></b>";
+            return 4;
         }
     }
 
     else if (choice1 === "Scissors") {
         if (choice2 === "Rock") {
-            return "<b>Rock beats scissors! <span class='loser'>" +name+ " loses!</span></b>";
+            return 5;
         }
 
         else {
-            return "<b>Scissors beats paper! <span class='winner'>" +name+ " wins!</span></b>";
+            return 6;
         }
     }
 }
+
+/*
+// find winner
+function compare(choice1, choice2, name) {
+
+    if (choice1 === "Rock") {
+        if (choice2 === "Scissors") {
+            return "<b>Rock beats scissors! <span class='winner'>" +name+ " wins!</span></b>"; //1
+        }
+
+        else {
+            return "<b>Paper beats rock! <span class='loser'>" +name+ " loses!</span></b>"; //2
+        }
+    }
+
+    else if (choice1 === "Paper") {
+        if (choice2 === "Rock") {
+            return "<b>Paper beats rock! <span class='winner'>" +name+ " wins!</span></b>"; //3
+        }
+
+        else {
+            return "<b>Scissors beat paper! <span class='loser'>" +name+ " loses!</span></b>"; //4
+        }
+    }
+
+    else if (choice1 === "Scissors") {
+        if (choice2 === "Rock") {
+            return "<b>Rock beats scissors! <span class='loser'>" +name+ " loses!</span></b>"; //5
+        }
+
+        else {
+            return "<b>Scissors beats paper! <span class='winner'>" +name+ " wins!</span></b>"; //6
+        }
+    }
+}
+*/
