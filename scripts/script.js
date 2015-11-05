@@ -1,6 +1,6 @@
 /**
  * Created by Lori DK on 10/27/2015.
- * Version 1.3
+ * Version 1.4
  */
 
 /* TO DO
@@ -10,7 +10,7 @@
 
 $(document).ready(function() {
 
-    //var game = 0;
+    var game = 0;
 
     // hide everything but name form to start
     hideAll();
@@ -31,6 +31,7 @@ $(document).ready(function() {
         $("#nameOutput").show();
         $("#choose").show();
         $("#images").show();
+
     });
 
     //chose image
@@ -137,17 +138,18 @@ $(document).ready(function() {
 
     // Reset game
     $( "#again" ).on( "click", function( event ) {
-        //game++;
-        //console.log(game);
+        game++;
+        console.log(game);
         console.log("again");
+
         hideAll();
         $("#newName").show();
-        /*
-        if (game / 3 === 0){
+
+        if (game % 5 == 0){
             $("#newName").show();
         }
 
-        //else {
+        else {
             var name = getName();
 
             // hide name form, show choice screen
@@ -156,8 +158,8 @@ $(document).ready(function() {
             $("#nameOutput").show();
             $("#choose").show();
             $("#images").show();
-        //}
-         */
+        }
+
     });
 
     // chose name change
@@ -166,6 +168,13 @@ $(document).ready(function() {
         hideAll();
         $("#nameForm").show();
         $("#banner").show();
+    });
+
+    $( "#clearScore" ).on( "click", function( event ) {
+        localStorage.scoreTotal = 0;
+        localStorage.scoreTotalComp = 0;
+        $("#scoreTotal").html("<b>You: " + localStorage.scoreTotal +"</b>");
+        $("#scoreTotalComp").html("<b>Computer: " + localStorage.scoreTotalComp + "</b>");
     });
 
 });
@@ -182,7 +191,6 @@ function hideAll() {
     $("#nameForm").hide();
     $("#score").hide();
 };
-
 
 // set name
 function getName() {
