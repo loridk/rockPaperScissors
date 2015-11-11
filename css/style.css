@@ -31,6 +31,27 @@ img {
 	padding-bottom: 7%;
 }
 
+/* unvisited link */
+.bottom a:link {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+/* visited link */
+.bottom a:visited {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+/* mouse over link */
+.bottom a:hover {
+	color: #FFFFFF;
+}
+
+/* selected link */
+.bottom a:active {
+	color: #FFFFFF;
+}
 
 @media only screen and (max-width:800px) {
 	.img {
